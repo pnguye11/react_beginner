@@ -3,21 +3,40 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 1,
+    tags: ["tag1", "tag2", "tag3"],
     // imageUrl: "https://picsum.photos/200",
   };
-  styles = {
-    fontSize: 30,
-    fontWeight: "bold",
+
+  ////binding event handlers
+  // constructor() {
+  //   super();
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  // }
+  handleIncrement = () => {
+    console.log("increment clicked");
   };
+  // styles = {
+  //   fontSize: 30,
+  //   fontWeight: "bold",
+  // };
   render() {
-    let classes = this.getBadgeClasses();
     return (
       <div>
         {/* <img src={this.state.imageUrl} alt="" /> */}
         <span style={{ fontSize: 30 }} className={this.getBadgeClasses()}>
           {this.formatCount()}
         </span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary btn-sm"
+        >
+          Increment
+        </button>
+        <ul>
+          {this.state.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
       </div>
     );
   }
