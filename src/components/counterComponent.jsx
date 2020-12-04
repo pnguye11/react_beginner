@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 1,
-    tags: ["tag1", "tag2", "tag3"],
+    value: this.props.value,
+
     // imageUrl: "https://picsum.photos/200",
   };
 
@@ -13,7 +13,7 @@ class Counter extends Component {
   //   this.handleIncrement = this.handleIncrement.bind(this);
   // }
   handleIncrement = () => {
-    console.log("increment clicked");
+    this.setState({ value: this.state.value + 1 });
   };
   // styles = {
   //   fontSize: 30,
@@ -23,32 +23,26 @@ class Counter extends Component {
     return (
       <div>
         {/* <img src={this.state.imageUrl} alt="" /> */}
-        <span style={{ fontSize: 30 }} className={this.getBadgeClasses()}>
-          {this.formatCount()}
-        </span>
+
+        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
           onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
       </div>
     );
   }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
+    classes += this.state.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "zero" : count;
+    const { value } = this.state;
+    return value === 0 ? "zero" : value;
   }
 }
 
